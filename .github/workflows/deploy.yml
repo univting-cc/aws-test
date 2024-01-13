@@ -53,7 +53,7 @@ jobs:
 
       - name: deploy with AWS codeDeploy
         run: aws deploy create-deployment
-          --application-name blog-vanilla-codedeploy
+          --application-name univting-aws-test-codedeploy
           --deployment-config-name CodeDeployDefault.OneAtATime
           --deployment-group-name deploy-group
-          --s3-location bucket=blog-vanilla-bucket,bundleType=zip,key=public/blog-vanilla.zip 
+          --s3-location bucket=univting-test-version1,bundleType=zip,key=public/test.zip
