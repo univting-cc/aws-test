@@ -1,0 +1,58 @@
+name: deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+
+
+jobs:
+  build:
+   runs-on: ubuntu-latest
+
+   strategy:
+      matrix:
+        node-version: [12.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+   steps:
+      - name: Checkout source code.
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4.0.1
+  
+      - name: create env file
+        working-directory: ./
+        run: |
+          touch .env
+          cat << EOF >> .env
+          ${{ secrets.ENV }}
+
+      - name: build client files
+        working-directory: ./client
+        run: |
+          yarn install --frozen-lockfile
+          yarn build
+
+      - name: zip distributions
+        run: zip -r ./test.zip
+
+      - name: AWS configure credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: upload to S3
+        run: aws s3 cp --region ap-northeast-2 ./test.zip s3://univting-test-version1/public/
+
+      - name: deploy with AWS codeDeploy
+        run: aws deploy create-deployment
+          --application-name blog-vanilla-codedeploy
+          --deployment-config-name CodeDeployDefault.OneAtATime
+          --deployment-group-name deploy-group
+          --s3-location bucket=blog-vanilla-bucket,bundleType=zip,key=public/blog-vanilla.zip 
