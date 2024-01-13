@@ -24,18 +24,16 @@ jobs:
         uses: actions/setup-node@v4.0.1
   
       - name: create env file
-        run: |
+         run: |
           touch .env
-          echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> .env
-          echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> .env
-          echo "AWS_REGION=${{secrets.AWS_REGION}}" >> .env
-
+          cat << EOF >> .env
+          ${{ secrets.ENV }}
           cat .env
 
       - name: build client files
         working-directory: ./
         run: |
-          npm i
+
           npm install --frozen-lockfile
 
 
