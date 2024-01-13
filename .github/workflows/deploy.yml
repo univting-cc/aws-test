@@ -25,7 +25,7 @@ jobs:
         uses: actions/setup-node@v4.0.1
   
       - name: create env file
-        working-directory: ./
+        working-directory: ./AWS_TEST
         run: |
           touch .env
           cat << EOF >> .env
