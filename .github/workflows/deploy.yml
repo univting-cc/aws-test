@@ -29,6 +29,7 @@ jobs:
           touch .env
           cat << EOF >> .env
           ${{ secrets.ENV }}
+          cat .env
 
       - name: build client files
         working-directory: ./
