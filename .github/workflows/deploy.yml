@@ -31,12 +31,6 @@ jobs:
           cat << EOF >> .env
           ${{ secrets.ENV }}
 
-      - name: build client files
-        working-directory: ./client
-        run: |
-          yarn install --frozen-lockfile
-          yarn build
-
       - name: zip distributions
         run: zip -r ./test.zip
 
