@@ -25,7 +25,6 @@ jobs:
         uses: actions/setup-node@v4.0.1
   
       - name: create env file
-        working-directory: ./server
         run: |
           touch .env
           cat << EOF >> .env
