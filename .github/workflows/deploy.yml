@@ -35,11 +35,13 @@ jobs:
       - name: build client files
         working-directory: ./
         run: |
+          npm i
           npm install --frozen-lockfile
+          npm run build
 
 
       - name: zip distributions
-        run: zip -r ./test.zip *
+        run: zip -r ./test.zip */.env
 
       - name: AWS configure credentials
         uses: aws-actions/configure-aws-credentials@v1
