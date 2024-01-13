@@ -31,6 +31,12 @@ jobs:
           cat << EOF >> .env
           ${{ secrets.ENV }}
 
+      - name: build client files
+        working-directory: ./
+        run: |
+          npm install --frozen-lockfile
+
+
       - name: zip distributions
         run: zip -r ./test.zip
 
