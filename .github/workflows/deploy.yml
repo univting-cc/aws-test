@@ -38,7 +38,7 @@ jobs:
 
 
       - name: zip distributions
-        run: zip -r ./test.zip
+        run: zip -r ./test.zip *
 
       - name: AWS configure credentials
         uses: aws-actions/configure-aws-credentials@v1
