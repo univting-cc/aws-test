@@ -5,4 +5,4 @@ cd $REPOSITORY
 
 sudo npm i
 
-sudo node app.js
+sudo npx pm2 reload all 
