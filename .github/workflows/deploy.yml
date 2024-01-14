@@ -28,10 +28,9 @@ jobs:
           touch .env
           cat << EOF >> .env
           ${{ secrets.ENV }}
-          cat .env
 
       - name: zip distributions
-        run: zip -qq -r test.zip ./AWS_TEST .env
+        run: zip -qq -r test.zip . .env
 
       - name: AWS configure credentials
         uses: aws-actions/configure-aws-credentials@v1
