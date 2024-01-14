@@ -3,6 +3,6 @@ REPOSITORY=/home/ubuntu/deploy
 
 cd $REPOSITORY 
 
-sudo npm i
+npm i
 
-sudo npx pm2 start app.js
+npx pm2 start app.js
