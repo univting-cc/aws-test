@@ -29,8 +29,16 @@ jobs:
           cat << EOF >> .env
           ${{ secrets.ENV }}
 
+      - name: create db config file
+        run : |
+          mkdir config
+          cd config
+          touch config.json
+          cat << EOF >> config.json
+          ${{ secrets.config }}
+
       - name: zip distributions
-        run: zip -qq -r test.zip . .env
+        run: zip -qq -r test.zip . config/config.json
 
       - name: AWS configure credentials
         uses: aws-actions/configure-aws-credentials@v1
