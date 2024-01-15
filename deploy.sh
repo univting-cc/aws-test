@@ -1,8 +1,10 @@
 #!/bin/bash
 REPOSITORY=/home/ubuntu/deploy 
 
+sudo chown -R $(whoami) /home/ubuntu/deploy
+
 cd $REPOSITORY 
 
-sudo npm i
+# npm i
 
-sudo npx pm2 reload all
+# npx pm2 reload all
