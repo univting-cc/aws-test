@@ -5,3 +5,4 @@ sudo chown -R $(whoami) /home/ubuntu/deploy
 
 cd $REPOSITORY 
 
+pm2 reload all
