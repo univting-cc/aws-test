@@ -5,4 +5,4 @@ sudo chown -R $(whoami) /home/ubuntu/deploy
 
 cd $REPOSITORY 
 
-cat package.json
+npm i
