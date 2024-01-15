@@ -5,4 +5,3 @@ sudo chown -R $(whoami) /home/ubuntu/deploy
 
 cd $REPOSITORY 
 
-npm i
