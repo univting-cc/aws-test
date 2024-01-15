@@ -23,10 +23,10 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v4.0.1
 
-      # - name: build npm_moudle
-      #   working-directory: ./
-      #   run: |
-      #     npm install
+      - name: build npm_moudle
+        working-directory: ./
+        run: |
+          npm install
   
       - name: create env file
         run: |
